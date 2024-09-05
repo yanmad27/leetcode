@@ -1,4 +1,5 @@
-package main
+package leetcode
+
 /*
  * @lc app=leetcode id=874 lang=golang
  *
@@ -68,4 +69,3 @@ func robotSim(commands []int, obstacles [][]int) int {
 }
 
 // @lc code=end
-
