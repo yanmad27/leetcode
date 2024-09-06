@@ -12,27 +12,17 @@ func missingRolls(rolls []int, mean int, n int) []int {
 	for _, roll := range rolls {
 		sum -= roll
 	}
-	var find func(tmp []int) []int
-	find = func(tmp []int) []int {
-		if len(tmp) == n {
-			tmpSum := 0
-			for _, num := range tmp {
-				tmpSum += num
-			}
-			if tmpSum == sum {
-				return tmp
-			}
-			return nil
-		}
-		for i := sum / n; i <= 6; i++ {
-			result := find(append(tmp, i))
-			if len(result) != 0 {
-				return result
-			}
-		}
+	if sum < n || sum > 6*n {
 		return []int{}
 	}
-	return find([]int{})
+	res := make([]int, n)
+	for i := 0; i < n; i++ {
+		res[i] = 1
+	}
+	for i := 0; i < sum-n; i++ {
+		res[i%n]++
+	}
+	return res
 }
 
 // @lc code=end
