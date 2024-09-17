@@ -11,22 +11,13 @@ import "strings"
 // @lc code=start
 func uncommonFromSentences(s1 string, s2 string) []string {
 	commonMap := make(map[string]bool)
-	s1s := strings.Split(s1, " ")
-	s2s := strings.Split(s2, " ")
-	for _, word := range s1s {
-		if _, ok := commonMap[word]; !ok {
-			commonMap[word] = true
-		} else {
-			commonMap[word] = false
-		}
+	s := s1 + " " + s2
+	arr := strings.Split(s, " ")
+	for _, word := range arr {
+		_, ok := commonMap[word]
+		commonMap[word] = !ok
 	}
-	for _, word := range s2s {
-		if _, ok := commonMap[word]; !ok {
-			commonMap[word] = true
-		} else {
-			commonMap[word] = false
-		}
-	}
+
 	result := []string{}
 	for key, value := range commonMap {
 		if value {
