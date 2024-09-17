@@ -3,6 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	nums := []string{"00:00", "23:59", "00:00"}
-	fmt.Println(findMinDifference(nums))
+
+	s1 := "s z z z s"
+	s2 := "s z ejt"
+	fmt.Println(uncommonFromSentences(s1, s2))
 }
