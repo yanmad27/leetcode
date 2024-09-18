@@ -4,7 +4,6 @@ import "fmt"
 
 func main() {
 
-	s1 := "s z z z s"
-	s2 := "s z ejt"
-	fmt.Println(uncommonFromSentences(s1, s2))
+	nums := []int{999999998, 999999997, 999999999}
+	fmt.Println(largestNumber(nums))
 }
