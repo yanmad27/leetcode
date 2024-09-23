@@ -4,6 +4,7 @@ import "fmt"
 
 func main() {
 
-	nums := []int{999999998, 999999997, 999999999}
-	fmt.Println(largestNumber(nums))
+	arg1 := "kevlplxozaizdhxoimmraiakbak"
+	arg2 := []string{"yv", "bmab", "hv", "bnsll", "mra", "jjqf", "g", "aiyzi", "ip", "pfctr", "flr", "ybbcl", "biu", "ke", "lpl", "iak", "pirua", "ilhqd", "zdhx", "fux", "xaw", "pdfvt", "xf", "t", "wq", "r", "cgmud", "aokas", "xv", "jf", "cyys", "wcaz", "rvegf", "ysg", "xo", "uwb", "lw", "okgk", "vbmi", "v", "mvo", "fxyx", "ad", "e"}
+	fmt.Println(minExtraChar(arg1, arg2))
 }
