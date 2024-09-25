@@ -4,7 +4,6 @@ import "fmt"
 
 func main() {
 
-	arg1 := []int{1, 10, 100}
-	arg2 := []int{1000}
-	fmt.Println(longestCommonPrefix(arg1, arg2))
+	arg1 := []string{"aaaa", "aaa", "aa", "a"}
+	fmt.Println(sumPrefixScores(arg1))
 }
