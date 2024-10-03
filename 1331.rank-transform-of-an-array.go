@@ -1,3 +1,7 @@
+package main
+
+import "sort"
+
 /*
  * @lc app=leetcode id=1331 lang=golang
  *
@@ -26,4 +30,3 @@ func arrayRankTransform(arr []int) []int {
 }
 
 // @lc code=end
-
