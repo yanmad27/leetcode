@@ -4,5 +4,5 @@ import "fmt"
 
 func main() {
 
-	fmt.Println(checkInclusion("adc", "dcda"))
+	fmt.Println(minLength("ABFCACDB"))
 }
