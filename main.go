@@ -4,5 +4,5 @@ import "fmt"
 
 func main() {
 
-	fmt.Println(maxWidthRamp([]int{9, 8, 1, 0, 1, 9, 4, 0, 4, 1}))
+	fmt.Println(smallestChair([][]int{{3, 10}, {1, 5}, {2, 6}}, 0))
 }
