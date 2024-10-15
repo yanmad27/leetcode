@@ -2,7 +2,6 @@ package main
 
 import (
 	"container/heap"
-	"math"
 )
 
 /*
@@ -35,18 +34,13 @@ func (h *IntHeap) Pop() any {
 }
 
 func maxKelements(nums []int, k int) int64 {
-	h := &IntHeap{}
-	heap.Init(h)
-	for _, num := range nums {
-		heap.Push(h, num)
-	}
+	h := IntHeap(nums)
+	heap.Init(&h)
 	rs := 0
 	for i := 1; i <= k; i++ {
-		max := heap.Pop(h)
+		max := heap.Pop(&h)
 		rs += max.(int)
-		tmp := float64(max.(int)) / 3
-		replace := math.Ceil(tmp)
-		heap.Push(h, int(replace))
+		heap.Push(&h, (max.(int)+2)/3)
 	}
 	return int64(rs)
 }
