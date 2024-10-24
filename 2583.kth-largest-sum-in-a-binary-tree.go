@@ -9,11 +9,6 @@ import (
  *
  * [2583] Kth Largest Sum in a Binary Tree
  */
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
 
 // @lc code=start
 /**
