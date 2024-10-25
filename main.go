@@ -2,8 +2,7 @@ package main
 
 import "fmt"
 
-
 func main() {
 
-	fmt.Println(maxUniqueSplit("ababccc"))
+	fmt.Println(removeSubfolders([]string{"/a/b/c", "/a/b/ca", "/a/b/d"}))
 }
