@@ -21,7 +21,7 @@ func countSquaresByLevel(matrix [][]int, level int) int {
 						break
 					}
 				}
-				if isValid == false {
+				if !isValid {
 					break
 				}
 			}
