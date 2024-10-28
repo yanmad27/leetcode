@@ -4,5 +4,5 @@ import "fmt"
 
 func main() {
 
-	fmt.Println(removeSubfolders([]string{"/a/b/c", "/a/b/ca", "/a/b/d"}))
+	fmt.Println(longestSquareStreak([]int{4, 3, 6, 16, 8, 2}))
 }
