@@ -4,5 +4,5 @@ import "fmt"
 
 func main() {
 
-	fmt.Println(longestSquareStreak([]int{4, 3, 6, 16, 8, 2}))
+	fmt.Println(maxMoves([][]int{{3, 2, 4}, {2, 1, 9}, {1, 1, 7}}))
 }
