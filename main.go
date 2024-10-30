@@ -4,5 +4,5 @@ import "fmt"
 
 func main() {
 
-	fmt.Println(maxMoves([][]int{{3, 2, 4}, {2, 1, 9}, {1, 1, 7}}))
+	fmt.Println(minimumMountainRemovals([]int{100, 92, 89, 77, 74, 66, 64, 66, 64}))
 }
