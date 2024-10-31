@@ -11,7 +11,7 @@ import "sort"
 // @lc code=start
 
 func checkExist(rootMap map[string]bool, folder string) bool {
-	tmp := ""
+	var tmp string
 	folder += "/"
 	for i := 0; i < len(folder); i++ {
 		if folder[i] == '/' {
@@ -19,7 +19,7 @@ func checkExist(rootMap map[string]bool, folder string) bool {
 				return true
 			}
 		}
-		tmp += string(folder[i])
+		tmp = folder[:i+1]
 	}
 	return false
 }
