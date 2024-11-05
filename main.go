@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(compressedString("mrm"))
+	fmt.Println(minChanges("1001"))
 }
