@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(canSortArray([]int{3, 16, 8, 4, 2}))
+	fmt.Println(getMaximumXor([]int{2, 3, 4, 7}, 3))
 }
