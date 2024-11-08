@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(minChanges("1001"))
+	fmt.Println(canSortArray([]int{3, 16, 8, 4, 2}))
 }
