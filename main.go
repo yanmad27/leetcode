@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(minimumSubarrayLength([]int{32, 1, 2, 81, 76, 58}, 125))
+	fmt.Println(countFairPairs([]int{0, 1, 7, 4, 4, 5}, 3, 6))
 }
