@@ -15,14 +15,20 @@ func minimizedMaximum(n int, quantities []int) int {
 
 	canDistribute := func(k int) bool {
 		sum := 0
+		if k == 0 {
+			return false
+		}
 		for _, q := range quantities {
-			sum += (q + k) / (k + 1)
+			sum += q / k
+			if q%k != 0 {
+				sum++
+			}
 		}
 		return sum <= n
 	}
 	return sort.Search(100000, func(i int) bool {
 		return canDistribute(i)
-	}) + 1
+	})
 }
 
 // @lc code=end
