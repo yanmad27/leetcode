@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(decrypt([]int{2, 4, 9, 3}, -2))
+	fmt.Println(maximumSubarraySum([]int{9, 9, 9, 1, 2, 3}, 3))
 }
