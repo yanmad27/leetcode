@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(takeCharacters("cbbac", 1))
+	fmt.Println(rotateTheBox([][]byte{{'#', '.', '*', '.'}, {'#', '#', '*', '.'}}))
 }
