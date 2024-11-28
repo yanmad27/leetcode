@@ -21,12 +21,7 @@ func minimumObstacles(grid [][]int) int {
 		visited[i] = make([]bool, n)
 	}
 
-	directions := [][3]int{
-		{0, 1, 0},
-		{1, 0, 0},
-		{-1, 0, 0},
-		{0, -1, 0},
-	}
+	directions := [][2]int{{0, 1}, {1, 0}, {-1, 0}, {0, -1}}
 	minObstacles := math.MaxInt
 	for queue.Len() > 0 {
 		curr := queue.Front().Value.([3]int)
