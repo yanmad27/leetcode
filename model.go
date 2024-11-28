@@ -1,5 +1,10 @@
 package main
 
+import (
+	"strconv"
+	"strings"
+)
+
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -50,4 +55,28 @@ func buildTreeNode(nums []int) *TreeNode {
 		i++
 	}
 	return root
+}
+
+func convertTo1DArray(s string) []int {
+	s = strings.ReplaceAll(s, "[", "")
+	s = strings.ReplaceAll(s, "]", "")
+	sArr := strings.Split(s, ",")
+	rs := make([]int, len(sArr))
+	for i, numStr := range sArr {
+		num, _ := strconv.Atoi(numStr)
+		rs[i] = num
+	}
+	return rs
+}
+
+func convertTo2DArray(s string) [][]int {
+	s = strings.ReplaceAll(s, "],[", "|")
+	s = strings.ReplaceAll(s, "[", "")
+	sArr := strings.Split(s, "|")
+	rs := make([][]int, len(sArr))
+	for i, rowStr := range sArr {
+		row := convertTo1DArray(rowStr)
+		rs[i] = row
+	}
+	return rs
 }
