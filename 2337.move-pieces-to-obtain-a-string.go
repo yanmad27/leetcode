@@ -8,51 +8,39 @@ package main
 
 // @lc code=start
 func canChange(start string, target string) bool {
+	t1, t2 := []byte{}, []byte{}
 	l1, r1, l2, r2 := []int{}, []int{}, []int{}, []int{}
 
 	for i := 0; i < len(start); i++ {
 		if start[i] == 'L' {
 			l1 = append(l1, i)
+			t1 = append(t1, 'L')
 		} else if start[i] == 'R' {
 			r1 = append(r1, i)
+			t1 = append(t1, 'R')
 		}
 		if target[i] == 'L' {
 			l2 = append(l2, i)
+			t2 = append(t2, 'L')
 		} else if target[i] == 'R' {
 			r2 = append(r2, i)
+			t2 = append(t2, 'R')
 		}
 	}
-	if len(r1) != len(r2) || len(l1) != len(l2) {
+	if len(r1) != len(r2) ||
+		len(l1) != len(l2) ||
+		string(t1) != string(t2) {
 		return false
 	}
 	for i := 0; i < len(l1); i++ {
 		if l1[i] < l2[i] {
 			return false
 		}
-		for j := 0; j < len(r1); j++ {
-			if r1[j] < l1[i] && r1[j] >= l2[i] {
-				return false
-			}
-			if r1[j] > l2[i] {
-				break
-			}
-		}
-		l1[i] = l2[i]
 	}
 	for i := len(r1) - 1; i >= 0; i-- {
 		if r1[i] > r2[i] {
 			return false
 		}
-		for j := len(l1) - 1; j >= 0; j-- {
-			if l1[j] > r1[i] && l1[j] <= r2[i] {
-				return false
-			}
-
-			if l1[j] < r2[i] {
-				break
-			}
-		}
-		r1[i] = r2[i]
 	}
 	return true
 
