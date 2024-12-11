@@ -9,7 +9,7 @@ import "sort"
  */
 
 // @lc code=start
-func maximumBeauty(items [][]int, queries []int) []int {
+func maximumBeauty2070(items [][]int, queries []int) []int {
 
 	sort.Slice(items, func(i, j int) bool {
 		if items[i][0] == items[j][0] {
