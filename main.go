@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(pickGifts([]int{25, 64, 9, 4, 100}, 4))
+	fmt.Println(findScore([]int{2, 5, 6, 6, 10}))
 }
