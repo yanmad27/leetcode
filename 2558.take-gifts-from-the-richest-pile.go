@@ -13,25 +13,9 @@ import (
 
 // @lc code=start
 
-type IntHeap1 []int
-
-func (h IntHeap1) Len() int           { return len(h) }
-func (h IntHeap1) Less(i, j int) bool { return h[i] > h[j] }
-func (h IntHeap1) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
-func (h *IntHeap1) Push(x any) {
-	*h = append(*h, x.(int))
-}
-func (h *IntHeap1) Pop() any {
-	old := *h
-	n := len(old)
-	x := old[n-1]
-	*h = old[0 : n-1]
-	return x
-}
-
 func pickGifts(gifts []int, k int) int64 {
 
-	h := IntHeap1(gifts)
+	h := MaxHeap(gifts)
 	heap.Init(&h)
 
 	for i := 1; i <= k; i++ {
