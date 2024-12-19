@@ -8,18 +8,14 @@ package main
 
 // @lc code=start
 func maxChunksToSorted(arr []int) int {
-	mem := make(map[int]bool)
+	maxMap := make(map[int]int)
 	count := 0
-	for i, num := range arr {
-		mem[num] = true
-		filled := true
-		for j := 0; j <= i; j++ {
-			if !mem[j] {
-				filled = false
-				break
-			}
-		}
-		if filled {
+	maxMap[0] = arr[0]
+	for i := 1; i < len(arr); i++ {
+		maxMap[i] = max(arr[i], maxMap[i-1])
+	}
+	for i := 0; i < len(arr); i++ {
+		if i == maxMap[i] {
 			count++
 		}
 	}
