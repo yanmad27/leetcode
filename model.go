@@ -39,14 +39,14 @@ func buildTreeNode(nums []int) *TreeNode {
 	for len(queue) > 0 {
 		node := queue[0]
 		queue = queue[1:]
-		if i < len(nums) && nums[i] != -1 {
+		if i < len(nums) && nums[i] != 0 {
 			node.Left = &TreeNode{
 				Val: nums[i],
 			}
 			queue = append(queue, node.Left)
 		}
 		i++
-		if i < len(nums) && nums[i] != -1 {
+		if i < len(nums) && nums[i] != 0 {
 			node.Right = &TreeNode{
 				Val: nums[i],
 			}
