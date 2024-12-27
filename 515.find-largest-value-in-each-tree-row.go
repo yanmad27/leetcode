@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 /*
  * @lc app=leetcode id=515 lang=golang
  *
