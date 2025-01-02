@@ -27,7 +27,7 @@ func vowelStrings(words []string, queries [][]int) []int {
 	}
 	rs := make([]int, len(queries))
 	for i, query := range queries {
-		rs[i] = prefix[query[1]+1] - prefix[query[0]]
+		rs[i] = prefix[query[1]+1] - prefix[query[0]+1]
 	}
 
 	return rs
