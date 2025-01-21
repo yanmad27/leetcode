@@ -13,31 +13,34 @@ func minCost(grid [][]int) int {
 	m := len(grid)
 	n := len(grid[0])
 	moves := [][2]int{{0, 1}, {0, -1}, {1, 0}, {-1, 0}}
-	costGrid := make([][]int, m)
+	cost := make([][]int, m)
 	for i := 0; i < m; i++ {
-		costGrid[i] = make([]int, n)
+		cost[i] = make([]int, n)
 		for j := 0; j < n; j++ {
-			costGrid[i][j] = math.MaxInt
+			cost[i][j] = math.MaxInt
 		}
 	}
 
-	costGrid[0][0] = 0
-	var bfs func(i, j int)
-	bfs = func(i, j int) {
+	cost[0][0] = 0
+	stack := [][2]int{{0, 0}}
+	for len(stack) > 0 {
+		cur := stack[0]
+		stack = stack[1:]
+		i, j := cur[0], cur[1]
 		for k, move := range moves {
-			newCost := costGrid[i][j]
-			if grid[i][j] != k+1 {
+			newCost := cost[i][j]
+			if grid[i][j]-1 != k {
 				newCost++
 			}
 			x, y := i+move[0], j+move[1]
-			if i >= 0 && i < m && j > 0 && j < n && newCost < costGrid[x][y] {
-				costGrid[x][y] = newCost
-				bfs(x, y)
+			if x >= 0 && x < m && y >= 0 && y < n && newCost < cost[x][y] {
+				stack = append(stack, [2]int{x, y})
+				cost[x][y] = newCost
 			}
 		}
 	}
-	bfs(0, 0)
-	return costGrid[m-1][n-1]
+
+	return cost[m-1][n-1]
 
 }
 
