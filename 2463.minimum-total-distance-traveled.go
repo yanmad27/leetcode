@@ -12,12 +12,6 @@ import (
  */
 
 // @lc code=start
-func abs(value int) int {
-	if value > 0 {
-		return value
-	}
-	return -value
-}
 func minimumTotalDistance(robots []int, factories [][]int) int64 {
 	sort.Slice(robots, func(i, j int) bool {
 		return robots[i] < robots[j]
