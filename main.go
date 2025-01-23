@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(highestPeak(convertTo2DArray("[[0,1],[0,0]]")))
+	fmt.Println(countServers(convertTo2DArray("[[1,0],[0,1]]")))
 }
