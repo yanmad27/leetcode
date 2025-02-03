@@ -13,14 +13,14 @@ func checkInclusion(s1 string, s2 string) bool {
 		return false
 	}
 	for i := 0; i < len(s2)-len(s1)+1; i++ {
-		if check(s1, s2[i:i+len(s1)]) {
+		if check1(s1, s2[i:i+len(s1)]) {
 			return true
 		}
 	}
 	return false
 }
 
-func check(s1, s2 string) bool {
+func check1(s1, s2 string) bool {
 	s1Arr := make([]int, 26)
 	s2Arr := make([]int, 26)
 	for _, char := range s1 {
