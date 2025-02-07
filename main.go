@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(maxAscendingSum(convertTo1DArray("[12,17,15,13,10,11,12]")))
+	fmt.Println(queryResults(1, convertTo2DArray("[[0,1],[1,4],[1,1],[1,4],[1,1]]")))
 }
