@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
-
 func main() {
-	fmt.Println(queryResults(1, convertTo2DArray("[[0,1],[1,4],[1,1],[1,4],[1,1]]")))
+	obj := Constructor()
+	obj.Change(1, 10)
+	obj.Change(1, 10)
+	obj.Find(10)
+	obj.Change(1, 20)
+	obj.Find(10)
 }
