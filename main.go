@@ -1,10 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
-	obj := Constructor()
-	obj.Change(1, 10)
-	obj.Change(1, 10)
-	obj.Find(10)
-	obj.Change(1, 20)
-	obj.Find(10)
+	fmt.Println(countBadPairs([]int{1, 2, 3, 4, 5}))
 }
