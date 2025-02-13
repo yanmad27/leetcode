@@ -7,7 +7,7 @@ package main
  */
 
 // @lc code=start
-func minOperations(boxes string) []int {
+func lc1769_minOperations(boxes string) []int {
 	hasBoxIndex := []int{}
 	for i := 0; i < len(boxes); i++ {
 		if boxes[i] == '1' {

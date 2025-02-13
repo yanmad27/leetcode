@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(removeOccurrences("daabcbaabcbc", "abc"))
+	fmt.Println(minOperations([]int{2, 11, 10, 1, 3}, 10))
 }
