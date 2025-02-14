@@ -15,7 +15,7 @@ type NumberContainers struct {
 	isSorted map[int]bool
 }
 
-func Constructor() NumberContainers {
+func Constructor1() NumberContainers {
 	return NumberContainers{
 		index:    make(map[int]int),
 		group:    make(map[int][]int),
