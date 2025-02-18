@@ -10,7 +10,6 @@ import "slices"
 
 // @lc code=start
 func numTilePossibilities(tiles string) int {
-
 	resultMap := make(map[string]bool)
 	n := len(tiles)
 	var recursive func(cur []byte, used []int, i, length int)
@@ -27,13 +26,10 @@ func numTilePossibilities(tiles string) int {
 		for new := 0; new < n; new++ {
 			recursive(cur, used, new, length+1)
 		}
-
 	}
-
 	for i := 0; i < n; i++ {
 		recursive([]byte{}, []int{}, i, 0)
 	}
-
 	return len(resultMap)
 }
 
