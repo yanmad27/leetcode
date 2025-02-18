@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(smallestNumber("IIIDIDDD"))
+	fmt.Println(numTilePossibilities("AAB"))
 }

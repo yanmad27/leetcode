@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 /*
@@ -24,12 +23,10 @@ func usedI(num, i int) bool {
 }
 func smallestNumber(pattern string) string {
 	n := len(pattern)
-	result := math.MaxInt
-	var recursive func(cur, len int)
-	recursive = func(cur, len int) {
+	var recursive func(cur, len int) int
+	recursive = func(cur, len int) int {
 		if len == n {
-			result = min(result, cur)
-			return
+			return cur
 		}
 		lastNum := cur % 10
 		for i := 1; i <= 9; i++ {
@@ -38,15 +35,20 @@ func smallestNumber(pattern string) string {
 			}
 			if (pattern[len] == 'I' && i > lastNum) ||
 				(pattern[len] == 'D' && i < lastNum) {
-				recursive(cur*10+i, len+1)
+				return recursive(cur*10+i, len+1)
 			}
 		}
+		return -1
 	}
 
 	for i := 1; i <= 9; i++ {
-		recursive(i, 0)
+		tmp := recursive(i, 0)
+		if tmp != -1 {
+			return fmt.Sprintf("%d", tmp)
+		}
+
 	}
-	return fmt.Sprintf("%d", result)
+	panic("unreachable")
 }
 
 // @lc code=end
