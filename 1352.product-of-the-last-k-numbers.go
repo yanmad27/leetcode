@@ -13,7 +13,7 @@ type ProductOfNumbers struct {
 	lastZero       int
 }
 
-func Constructor() ProductOfNumbers {
+func Constructor1352() ProductOfNumbers {
 	return ProductOfNumbers{
 		prefixProduct:  []int{1},
 		currentProduct: 1,
