@@ -1,8 +1,7 @@
 package main
 
 import (
-	"fmt"
-	"slices"
+	"math"
 )
 
 /*
@@ -20,25 +19,56 @@ func mostProfitablePath(edges [][]int, bob int, amount []int) int {
 		treeMap[edge[1]] = append(treeMap[edge[1]], edge[0])
 	}
 
-	var bobPath []int
-	var bobGo func(cur int, path []int)
-	bobGo = func(cur int, path []int) {
-		path = append(path, cur)
-		nodes := treeMap[cur]
-		if cur == 0 {
-			bobPath = path
+	bobPath := make(map[int]int)
+	bobMove := make(map[int]int)
+	foundBobPath := false
+	var findBobPath func(cur, time int)
+	findBobPath = func(cur, time int) {
+		if foundBobPath {
 			return
 		}
-		for _, node := range nodes {
-			if slices.Contains(path, node) {
+		bobPath[cur] = time
+		bobMove[time] = cur
+		if cur == 0 {
+			foundBobPath = true
+			return
+		}
+		for _, nextMove := range treeMap[cur] {
+			if _, ok := bobPath[nextMove]; ok {
 				continue
 			}
-			bobGo(node, path)
+			findBobPath(nextMove, time+1)
+			if !foundBobPath {
+				delete(bobPath, nextMove)
+				delete(bobMove, time+1)
+			}
 		}
 	}
+	findBobPath(bob, 0)
 
-	fmt.Println(bobPath)
-	return -1
+	maxIncome := math.MinInt
+	var aliceGo func(cur, from, income, time int)
+	aliceGo = func(cur, from, income, time int) {
+		if len(treeMap[cur]) == 1 && cur != 0 {
+			maxIncome = max(maxIncome, income)
+			return
+		}
+		for _, node := range treeMap[cur] {
+			if node == from {
+				continue
+			}
+			newIncome := amount[node]
+			if node == bobMove[time] {
+				newIncome = amount[node] / 2
+			} else if t, ok := bobPath[node]; ok && time > t {
+				newIncome = 0
+			}
+			aliceGo(node, cur, income+newIncome, time+1)
+		}
+	}
+	aliceGo(0, -1, amount[0], 1)
+
+	return maxIncome
 
 }
 
