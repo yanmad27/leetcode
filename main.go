@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(checkPowersOfThree(12))
+	fmt.Println(coloredCells(4))
 }
