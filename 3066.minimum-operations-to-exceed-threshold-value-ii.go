@@ -9,7 +9,7 @@ import "container/heap"
  */
 
 // @lc code=start
-func minOperations(nums []int, k int) int {
+func lc3066_minOperations(nums []int, k int) int {
 	h := MinHeap(nums)
 	heap.Init(&h)
 	num1 := heap.Pop(&h).(int)
