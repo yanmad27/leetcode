@@ -16,14 +16,7 @@ func numberOfArrays(differences []int, lower int, upper int) int {
 		maxDiff = max(maxDiff, cur)
 		minDiff = min(minDiff, cur)
 	}
-
-	count := 0
-	for i := lower; i <= upper; i++ {
-		if i+maxDiff <= upper && i+minDiff >= lower {
-			count++
-		}
-	}
-	return count
+	return max((upper-lower)-(maxDiff-minDiff)+1, 0)
 }
 
 // @lc code=end
