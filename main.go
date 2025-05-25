@@ -1,5 +1,10 @@
 package main
 
+import "fmt"
+
 func main() {
-	setZeroes(convertTo2DArray("[[1,1,1],[1,0,1],[1,1,1]]"))
+	fmt.Println(longestPalindrome([]string{"lc", "cl", "gg"}))
+	fmt.Println(longestPalindrome([]string{"ab", "ty", "yt", "lc", "cl", "ab"}))
+	fmt.Println(longestPalindrome([]string{"cc", "ll", "xx"}))
+	fmt.Println(longestPalindrome([]string{"dd", "aa", "bb", "dd", "aa", "dd", "bb", "dd", "aa", "cc", "bb", "cc", "dd", "cc"}))
 }
