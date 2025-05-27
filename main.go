@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
-	setZeroes(convertTo2DArray("[[1,1,1],[1,0,1],[1,1,1]]"))
+	fmt.Println(differenceOfSums(10, 3))
 }
