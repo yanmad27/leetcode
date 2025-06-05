@@ -58,6 +58,9 @@ func buildTreeNode(nums []int) *TreeNode {
 }
 
 func convertTo1DArray(s string) []int {
+	if s == "" {
+		return []int{}
+	}
 	s = strings.ReplaceAll(s, "[", "")
 	s = strings.ReplaceAll(s, "]", "")
 	sArr := strings.Split(s, ",")
@@ -72,6 +75,7 @@ func convertTo1DArray(s string) []int {
 func convertTo2DArray(s string) [][]int {
 	s = strings.ReplaceAll(s, "],[", "|")
 	s = strings.ReplaceAll(s, "[", "")
+	s = strings.ReplaceAll(s, "]", "")
 	sArr := strings.Split(s, "|")
 	rs := make([][]int, len(sArr))
 	for i, rowStr := range sArr {
