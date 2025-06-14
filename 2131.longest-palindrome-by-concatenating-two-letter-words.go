@@ -1,46 +1,26 @@
 package main
 
-/*
- * @lc app=leetcode id=2131 lang=golang
- *
- * [2131] Longest Palindrome by Concatenating Two Letter Words
- */
+import (
+	"strconv"
+	"strings"
+)
 
-// @lc code=start
-func longestPalindrome(words []string) int {
-	countMap := make(map[string]int)
-	for _, word := range words {
-		countMap[word]++
-	}
+func CreatePhoneNumber(numbers [10]uint) string {
 
-	maxLength := 0
-	selected := false
-	for key, val := range countMap {
-		if val == 0 {
-			continue
-		}
-		if key[0] != key[1] {
-			reverseKey := string(key[1]) + string(key[0])
-			reverseValue := countMap[reverseKey]
-			maxLength += min(val, reverseValue) * 4
-			countMap[key] = 0
-			countMap[reverseKey] = 0
-		} else {
-			if val%2 == 0 {
-				maxLength += val * 2
-			} else {
-				if !selected {
-					maxLength += val * 2
-					selected = true
-				} else {
-					maxLength += (val - 1) * 2
-				}
-			}
-
-		}
-	}
-	return maxLength
-
+	builder := strings.Builder{}
+	// "(123) 456-7890"
+	builder.WriteString("(")
+	builder.WriteString(strconv.Itoa(int(numbers[0])))
+	builder.WriteString(strconv.Itoa(int(numbers[1])))
+	builder.WriteString(strconv.Itoa(int(numbers[2])))
+	builder.WriteString(") ")
+	builder.WriteString(strconv.Itoa(int(numbers[3])))
+	builder.WriteString(strconv.Itoa(int(numbers[4])))
+	builder.WriteString(strconv.Itoa(int(numbers[5])))
+	builder.WriteString("-")
+	builder.WriteString(strconv.Itoa(int(numbers[6])))
+	builder.WriteString(strconv.Itoa(int(numbers[7])))
+	builder.WriteString(strconv.Itoa(int(numbers[8])))
+	builder.WriteString(strconv.Itoa(int(numbers[9])))
+	return builder.String()
 }
-
-// @lc code=end
