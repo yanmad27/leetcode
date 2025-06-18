@@ -7,7 +7,7 @@ package main
  */
 
 // @lc code=start
-func divideArray(nums []int) bool {
+func divideArray1(nums []int) bool {
 	n := len(nums)
 	numMap := make(map[int]int, n)
 	for _, num := range nums {
