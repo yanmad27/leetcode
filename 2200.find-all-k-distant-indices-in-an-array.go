@@ -8,18 +8,18 @@ package main
 
 // @lc code=start
 func findKDistantIndices(nums []int, key int, k int) []int {
-	res := make([]int, 0, len(nums))
-	prev := -1
+	rs := make([]int, 0, len(nums))
+	pre := -1
 	for i, n := range nums {
 		if n == key {
-			from, to := max(i-k, 0, prev+1), min(i+k, len(nums)-1)
-			for ; from <= to; from++ {
-				res = append(res, from)
-				prev = from
+			j, k := max(i-k, 0, pre+1), min(i+k, len(nums)-1)
+			for ; j <= k; j++ {
+				rs = append(rs, j)
+				pre = j
 			}
 		}
 	}
-	return res
+	return rs
 }
 
 // @lc code=end
