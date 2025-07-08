@@ -3,5 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(increasingTriplet([]int{100, 20, 10, 12, 5, 6}))
+	// fmt.Println(compress([]byte{'a', 'a', 'a', 'b', 'b', 'a', 'a'}))
+	//["a","b","c","c","c","c","c","c"]
+	fmt.Println(compress([]byte{'a', 'b', 'c', 'c', 'c', 'c', 'c', 'c', 'd', 'd'}))
 }
