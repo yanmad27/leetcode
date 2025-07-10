@@ -1,9 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
+func expect(result, expectation interface{}) {
+	if !reflect.DeepEqual(result, expectation) {
+		panic(fmt.Sprintf("Expected %v, but got %v", expectation, result))
+	}
+
+}
 func main() {
-	// fmt.Println(compress([]byte{'a', 'a', 'a', 'b', 'b', 'a', 'a'}))
-	//["a","b","c","c","c","c","c","c"]
-	fmt.Println(compress([]byte{'a', 'b', 'c', 'c', 'c', 'c', 'c', 'c', 'd', 'd'}))
+	expect(compress([]byte{'a', 'b', 'c', 'c', 'c', 'c', 'c', 'c', 'd', 'd'}), "asdf")
 }
