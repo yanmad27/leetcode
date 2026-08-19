@@ -51,12 +51,30 @@ time:
   (`longestSubarray1493`); `run` keys off the file, not the name, so it keeps
   working.
 
-If a problem is not in the cache, open it once in the extension. To test
-something the description does not cover, call it directly:
+If a problem is not in the cache, open it once in the extension.
+
+## Cases of your own
+
+The description rarely covers the edge cases that actually break a solution.
+Add a `Cases` function next to the solution, named after it, and `./solve` calls
+it after the examples:
 
 ```go
-expect(pivotIndex([]int{-1, -1, -1}), 0)
+// in 1493.longest-subarray-of-1-s-after-deleting-one-element.go
+func longestSubarrayCases() {
+	expect(longestSubarray([]int{0, 0, 0}), 0)
+	expect(longestSubarray([]int{1}), 0)
+}
 ```
+
+```
+$ ./solve 1493
+run(longestSubarray)   [1493.longest-subarray-of-1-s-after-deleting-one-element.go]
+5/5 passed
+```
+
+Plain Go, so the compiler checks the types, and the cases are committed with the
+solution they belong to. Problems without such a function just run the examples.
 
 ## Layout
 

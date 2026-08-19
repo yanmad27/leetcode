@@ -25,15 +25,19 @@ name=$(awk '/@lc code=start/ { found = 1 }
 generated=solve_current.go
 trap 'rm -f "$generated"' EXIT INT TERM
 
-cat > "$generated" <<EOF
-package main
-
-func init() {
-	current = func() {
-		run($name)
-	}
-}
-EOF
+{
+	echo "package main"
+	echo
+	echo "func init() {"
+	echo "	current = func() {"
+	echo "		run($name)"
+	# Cases of your own, kept in the solution file itself.
+	if grep -q "^func ${name}Cases()" "$file"; then
+		echo "		${name}Cases()"
+	fi
+	echo "	}"
+	echo "}"
+} > "$generated"
 
 echo "run($name)   [$file]"
 go run .
