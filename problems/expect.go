@@ -9,10 +9,21 @@ import (
 var passed, total int
 
 func expect(result, expectation any) bool {
+	return expectInput(result, expectation, "", 0)
+}
+
+// expectInput is expect for a case that came from the problem description, so
+// the failure can name the input it came from. Everything stays on one line,
+// with the input padded to width so the expected/got halves line up down the
+// column when several cases fail.
+func expectInput(result, expectation any, input string, width int) bool {
 	total++
 	if !equal(result, expectation) {
-		fmt.Printf("FAIL #%d: expected %v (%T), but got %v (%T)\n",
-			total, expectation, expectation, result, result)
+		if input != "" {
+			input = fmt.Sprintf(" %-*s ", width, input)
+		}
+		fmt.Printf("FAIL #%d:%s expected %v (%T), but got %v (%T)\n",
+			total, input, expectation, expectation, result, result)
 		return false
 	}
 	passed++

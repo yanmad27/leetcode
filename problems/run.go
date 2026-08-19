@@ -53,6 +53,33 @@ func runText(fn any, examples string) {
 		panic("run: want a function with exactly one return value")
 	}
 
+	cases := parseCases(examples, ft)
+	width := 0
+	for _, c := range cases {
+		if n := len(c.input); n > width && n <= inputColumn {
+			width = n
+		}
+	}
+	for _, c := range cases {
+		expectInput(fv.Call(c.args)[0].Interface(), c.want, c.input, width)
+	}
+}
+
+// inputColumn caps how far the expected/got halves are pushed right. One long
+// example does not get to indent every other line past it.
+const inputColumn = 44
+
+type example struct {
+	input string
+	args  []reflect.Value
+	want  any
+}
+
+// parseCases reads the "Input:"/"Output:" pairs out of a problem description.
+// Examples that do not fit the shape of fn are reported and dropped, so that
+// the cases returned are all runnable.
+func parseCases(examples string, ft reflect.Type) []example {
+	var cases []example
 	var args []reflect.Value
 	var input string
 	ok := true
@@ -66,28 +93,27 @@ func runText(fn any, examples string) {
 		case strings.HasPrefix(line, "Output:") && ok:
 			want, err := decode(strings.TrimSpace(strings.TrimPrefix(line, "Output:")), ft.Out(0))
 			if err != nil {
-				fmt.Printf("SKIP: %v\n  input: %s\n", err, input)
+				fmt.Printf("SKIP: %s: %v\n", input, err)
 				continue
 			}
-			if !expect(fv.Call(args)[0].Interface(), want) {
-				fmt.Printf("  input: %s\n", input)
-			}
+			cases = append(cases, example{input, args, want})
 		}
 	}
+	return cases
 }
 
 func parseArgs(input string, ft reflect.Type) ([]reflect.Value, bool) {
 	fields := splitTopLevel(input)
 	if len(fields) != ft.NumIn() {
-		fmt.Printf("SKIP: %s takes %d args, example has %d\n  input: %s\n",
-			ft, ft.NumIn(), len(fields), input)
+		fmt.Printf("SKIP: %s: %s takes %d args, example has %d\n",
+			input, ft, ft.NumIn(), len(fields))
 		return nil, false
 	}
 	args := make([]reflect.Value, len(fields))
 	for i, field := range fields {
 		v, err := decode(stripName(field), ft.In(i))
 		if err != nil {
-			fmt.Printf("SKIP: %v\n  input: %s\n", err, input)
+			fmt.Printf("SKIP: %s: %v\n", input, err)
 			return nil, false
 		}
 		args[i] = reflect.ValueOf(v)
