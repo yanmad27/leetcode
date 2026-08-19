@@ -1,0 +1,39 @@
+#!/bin/sh
+# Run a problem. No file in the repo changes.
+#
+#   ./solve       most recently edited solution file
+#   ./solve 724   problem 724
+#
+# Go cannot look a function up by name at run time, so the call has to be
+# compiled in. This writes it to solve_current.go, runs, and deletes the file
+# again, leaving only main.go and the solutions behind.
+set -e
+
+if [ -n "$1" ]; then
+	file=$(ls "$1".*.go 2>/dev/null | head -1)
+	[ -n "$file" ] || { echo "solve: no file for problem $1" >&2; exit 1; }
+else
+	file=$(ls -t [0-9]*.go | grep -v '_test\.go$' | head -1)
+fi
+
+# The solution is the first plain function after the @lc marker, skipping the
+# methods that design problems declare first.
+name=$(awk '/@lc code=start/ { found = 1 }
+	found && /^func [A-Za-z_]/ { sub(/\(.*/, "", $2); print $2; exit }' "$file")
+[ -n "$name" ] || { echo "solve: no solution function in $file" >&2; exit 1; }
+
+generated=solve_current.go
+trap 'rm -f "$generated"' EXIT INT TERM
+
+cat > "$generated" <<EOF
+package main
+
+func init() {
+	current = func() {
+		run($name)
+	}
+}
+EOF
+
+echo "run($name)   [$file]"
+go run .

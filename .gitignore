@@ -1,1 +1,4 @@
 .vscode
+
+# written by ./solve while it runs
+solve_current.go
