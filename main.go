@@ -2,6 +2,10 @@ package main
 
 func main() {
 	defer report()
-	expect(longestOnes([]int{1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0}, 2), 6)
-	expect(longestOnes([]int{0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1}, 3), 10)
+
+	run(longestSubarray)
+
+	expect(longestSubarray([]int{0, 0, 0}), 0)
+	expect(longestSubarray([]int{1}), 0)
+	expect(longestSubarray([]int{1, 1, 1, 1, 0}), 4)
 }

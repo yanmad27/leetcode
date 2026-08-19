@@ -8,14 +8,15 @@ import (
 
 var passed, total int
 
-func expect(result, expectation any) {
+func expect(result, expectation any) bool {
 	total++
 	if !equal(result, expectation) {
 		fmt.Printf("FAIL #%d: expected %v (%T), but got %v (%T)\n",
 			total, expectation, expectation, result, result)
-		return
+		return false
 	}
 	passed++
+	return true
 }
 
 func report() {
