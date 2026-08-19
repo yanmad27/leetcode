@@ -10,10 +10,10 @@
 set -e
 
 if [ -n "$1" ]; then
-	file=$(ls "$1".*.go 2>/dev/null | head -1)
+	file=$(ls problems/"$1".*.go 2>/dev/null | head -1)
 	[ -n "$file" ] || { echo "solve: no file for problem $1" >&2; exit 1; }
 else
-	file=$(ls -t [0-9]*.go | grep -v '_test\.go$' | head -1)
+	file=$(ls -t problems/[0-9]*.go | grep -v '_test\.go$' | head -1)
 fi
 
 # The solution is the first plain function after the @lc marker, skipping the
@@ -22,11 +22,11 @@ name=$(awk '/@lc code=start/ { found = 1 }
 	found && /^func [A-Za-z_]/ { sub(/\(.*/, "", $2); print $2; exit }' "$file")
 [ -n "$name" ] || { echo "solve: no solution function in $file" >&2; exit 1; }
 
-generated=solve_current.go
+generated=problems/solve_current.go
 trap 'rm -f "$generated"' EXIT INT TERM
 
 {
-	echo "package main"
+	echo "package problems"
 	echo
 	echo "func init() {"
 	echo "	current = func() {"

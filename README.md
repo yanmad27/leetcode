@@ -1,7 +1,7 @@
 # leetcode
 
-Go solutions, one file per problem, all in `package main`. Test cases come from
-the problem description itself, so there is nothing to write by hand.
+Go solutions, one file per problem under `problems/`. Test cases come from the
+problem description itself, so there is nothing to write by hand.
 
 ## Running
 
@@ -12,7 +12,7 @@ the problem description itself, so there is nothing to write by hand.
 
 ```
 $ ./solve 1493
-run(longestSubarray)   [1493.longest-subarray-of-1-s-after-deleting-one-element.go]
+run(longestSubarray)   [problems/1493.longest-subarray-of-1-s-after-deleting-one-element.go]
 3/3 passed
 ```
 
@@ -20,7 +20,7 @@ A failing case prints what went in and what came back:
 
 ```
 $ ./solve 724
-run(pivotIndex)   [724.find-pivot-index.go]
+run(pivotIndex)   [problems/724.find-pivot-index.go]
 FAIL #1: expected 3 (int), but got 0 (int)
   input: nums = [1,7,3,6,5,6]
 1/3 passed
@@ -60,7 +60,7 @@ Add a `Cases` function next to the solution, named after it, and `./solve` calls
 it after the examples:
 
 ```go
-// in 1493.longest-subarray-of-1-s-after-deleting-one-element.go
+// in problems/1493.longest-subarray-of-1-s-after-deleting-one-element.go
 func longestSubarrayCases() {
 	expect(longestSubarray([]int{0, 0, 0}), 0)
 	expect(longestSubarray([]int{1}), 0)
@@ -69,7 +69,7 @@ func longestSubarrayCases() {
 
 ```
 $ ./solve 1493
-run(longestSubarray)   [1493.longest-subarray-of-1-s-after-deleting-one-element.go]
+run(longestSubarray)   [problems/1493.longest-subarray-of-1-s-after-deleting-one-element.go]
 5/5 passed
 ```
 
@@ -78,11 +78,19 @@ solution they belong to. Problems without such a function just run the examples.
 
 ## Layout
 
+Everything lives in package `problems`, so a solution can call `expect` and the
+shared types without importing anything. `main.go` only starts it.
+
 | | |
 |---|---|
-| `724.find-pivot-index.go` | one problem, written by the LeetCode extension |
 | `solve` | picks a problem and runs it |
-| `main.go` | fixed entry point |
-| `run.go` | reads examples out of the cached description |
-| `expect.go` | comparison and the pass/total tally |
-| `model.go`, `heap.go` | shared `TreeNode`, `ListNode`, heap helpers |
+| `main.go` | entry point, calls `problems.Main` |
+| `problems/724.find-pivot-index.go` | one problem, written by the LeetCode extension |
+| `problems/run.go` | reads examples out of the cached description |
+| `problems/expect.go` | comparison and the pass/total tally |
+| `problems/entry.go` | holds the problem `./solve` selected |
+| `problems/model.go`, `problems/heap.go` | shared `TreeNode`, `ListNode`, heap helpers |
+
+Point the LeetCode extension at the folder so new files land there:
+`"leetcode.filePath": { "default": { "folder": "problems" } }`, and write
+`package problems` at the top.
