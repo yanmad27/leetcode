@@ -5,8 +5,17 @@ import (
 	"reflect"
 )
 
+var passed, total int
+
 func expect(result, expectation interface{}) {
+	total++
 	if !reflect.DeepEqual(result, expectation) {
-		panic(fmt.Sprintf("Expected %v, but got %v", expectation, result))
+		fmt.Printf("FAIL #%d: expected %v, but got %v\n", total, expectation, result)
+		return
 	}
+	passed++
+}
+
+func report() {
+	fmt.Printf("%d/%d passed\n", passed, total)
 }

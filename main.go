@@ -1,7 +1,7 @@
 package main
 
 func main() {
-	moveZeroes([]int{0, 1, 0, 3, 12})
-	moveZeroes([]int{0})
-	moveZeroes([]int{1, 0})
+	defer report()
+	expect(maxOperations([]int{1, 2, 3, 4}, 5), 1)
+	expect(maxOperations([]int{3, 1, 3, 4, 3}, 3), 1)
 }
